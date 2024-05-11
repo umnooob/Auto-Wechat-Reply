@@ -8,6 +8,8 @@ readme = "README.md"
 [tool.poetry.dependencies]
 python = "^3.10"
 langchain = "^0.1.17"
+pandas = "^2.2.2"
+polars = "^0.20.25"
 
 
 [tool.poetry.group.dev.dependencies]
