@@ -35,18 +35,18 @@ class chatMessages:
 
     def get_chat_history(
         self, remark: Optional[str] = None, nickname: Optional[str] = None
-    ):
+    ) -> pl.DataFrame:
         """get one of your friends chat history
 
         Args:
-            remark (Optional[str], optional): _description_. Defaults to None.
-            nickname (Optional[str], optional): _description_. Defaults to None.
+            remark (Optional[str], optional): wechat remark. Defaults to None.
+            nickname (Optional[str], optional): wechat nickname. Defaults to None.
 
         Raises:
-            ValueError: _description_
+            ValueError: both remark and nickname are None.
 
         Returns:
-            _type_: _description_
+            pl.DataFrame: chat history.
         """
         if not remark and not nickname:
             raise ValueError("Either `remark` or `nickname` must be provided.")
