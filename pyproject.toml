@@ -1,8 +1,8 @@
 [tool.poetry]
-name = "auto-wechat-reply"
+name = "autoWechatReply"
 version = "0.1.0"
 description = ""
-authors = ["Zepahn <dzx60090@gmail.com>"]
+authors = ["Zephan <dzx60090@gmail.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
