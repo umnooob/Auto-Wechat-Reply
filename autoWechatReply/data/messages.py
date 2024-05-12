@@ -27,6 +27,7 @@ class chatMessages:
         self.file_path = file_path
 
         # TODO: support more type
+        # only support text messages for now
         self.chat_messages = (
             pl.scan_csv(self.file_path)
             .select(self.USE_COLUMNS)
