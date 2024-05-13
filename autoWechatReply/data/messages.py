@@ -3,6 +3,13 @@ from pathlib import Path
 from typing import Optional, Union
 
 import polars as pl
+import tiktoken
+
+
+def num_tokens_from_string(string: str, model_name: str = "gpt-3.5-turbo") -> int:
+    encoding = tiktoken.encoding_for_model(model_name)
+    num_tokens = len(encoding.encode(string))
+    return num_tokens
 
 
 class chatMessages:
@@ -11,6 +18,7 @@ class chatMessages:
         "SubType",
         "IsSender",
         "StrContent",
+        "CreateTime",
         "StrTime",
         "Remark",
         "NickName",
@@ -35,7 +43,11 @@ class chatMessages:
         )
 
     def get_chat_history(
-        self, remark: Optional[str] = None, nickname: Optional[str] = None
+        self,
+        remark: Optional[str] = None,
+        nickname: Optional[str] = None,
+        limit=None,
+        return_token: bool = False,
     ) -> pl.DataFrame:
         """get one of your friends chat history
 
@@ -58,4 +70,13 @@ class chatMessages:
             filters = pl.col("Remark") == remark
         else:
             filters = pl.col("NickName") == nickname
-        return self.chat_messages.filter(filters).collect()
+
+        messages = self.chat_messages.filter(filters).sort("CreateTime")
+
+        if limit:
+            messages = messages.tail(limit)
+        if not return_token:
+            return messages
+        all_content = messages.select("StrContent").collect().to_dict()["StrContent"]
+        tokens = num_tokens_from_string(''.join(all_content))
+        return (messages.collect(), tokens)
