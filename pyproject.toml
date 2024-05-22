@@ -11,6 +11,7 @@ langchain = "^0.1.17"
 pandas = "^2.2.2"
 polars = "^0.20.25"
 langchain-openai = "^0.1.6"
+gradio = "^4.31.5"
 
 
 [tool.poetry.group.dev.dependencies]
