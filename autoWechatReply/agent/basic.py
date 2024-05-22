@@ -13,22 +13,22 @@ class LLMType(str, Enum):
     CHATGLM4 = "glm-4"
 
 
-openai = [LLMType.GPT3_5, LLMType.GPT4]
-deepseek = [LLMType.DEEPSEEK]
-chatglm = [LLMType.CHATGLM3, LLMType.CHATGLM4]
+OPENAI_TYPES = [LLMType.GPT3_5, LLMType.GPT4]
+DEEPSEEK_TYPES = [LLMType.DEEPSEEK]
+CHATGLM_TYPES = [LLMType.CHATGLM3, LLMType.CHATGLM4]
 
 
 def get_llm(name: LLMType, temperature=0.7) -> BaseChatModel:
-    if name in openai:
+    if name in OPENAI_TYPES:
         return ChatOpenAI(name=name, temperature=temperature)
-    elif name in deepseek:
+    elif name in DEEPSEEK_TYPES:
         return ChatOpenAI(
             model=name,
             temperature=temperature,
             openai_api_base="https://api.deepseek.com/v1",
             openai_api_key=os.getenv("DEEPSEEK_API_KEY"),
         )
-    elif name in chatglm:
+    elif name in CHATGLM_TYPES:
         return ChatOpenAI(
             model=name,
             temperature=temperature,
