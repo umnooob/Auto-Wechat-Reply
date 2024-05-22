@@ -76,7 +76,7 @@ class chatMessages:
         if limit:
             messages = messages.tail(limit)
         if not return_token:
-            return messages
+            return messages.collect()
         all_content = messages.select("StrContent").collect().to_dict()["StrContent"]
         tokens = num_tokens_from_string(''.join(all_content))
         return (messages.collect(), tokens)

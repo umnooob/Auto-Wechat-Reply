@@ -15,7 +15,7 @@ openai = [LLMType.GPT3_5, LLMType.GPT4]
 deepseek = [LLMType.DEEPSEEK]
 
 
-def get_llm(name: LLMType, temperature=1.1) -> BaseChatModel:
+def get_llm(name: LLMType, temperature=0.7) -> BaseChatModel:
     if name in openai:
         return ChatOpenAI(name=name, temperature=temperature)
     elif name in deepseek:
