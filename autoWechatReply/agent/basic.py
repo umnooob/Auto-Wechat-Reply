@@ -9,10 +9,13 @@ class LLMType(str, Enum):
     GPT3_5 = "gpt-3.5-turbo"
     GPT4 = "gpt-4-turbo-preview"
     DEEPSEEK = "deepseek-chat"
+    CHATGLM3 = "glm-3-turbo"
+    CHATGLM4 = "glm-4"
 
 
 openai = [LLMType.GPT3_5, LLMType.GPT4]
 deepseek = [LLMType.DEEPSEEK]
+chatglm = [LLMType.CHATGLM3, LLMType.CHATGLM4]
 
 
 def get_llm(name: LLMType, temperature=0.7) -> BaseChatModel:
@@ -24,6 +27,13 @@ def get_llm(name: LLMType, temperature=0.7) -> BaseChatModel:
             temperature=temperature,
             openai_api_base="https://api.deepseek.com/v1",
             openai_api_key=os.getenv("DEEPSEEK_API_KEY"),
+        )
+    elif name in chatglm:
+        return ChatOpenAI(
+            model=name,
+            temperature=temperature,
+            openai_api_base="https://open.bigmodel.cn/api/paas/v4/",
+            openai_api_key=os.getenv("ZHIPU_API_KEY"),
         )
     else:
         raise ValueError(f"Not Implement LLM `{name}`")
