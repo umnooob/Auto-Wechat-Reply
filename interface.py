@@ -92,4 +92,4 @@ with gr.Blocks() as app:
         )
 
 if __name__ == "__main__":
-    app.launch()
+    app.launch(share=True)
