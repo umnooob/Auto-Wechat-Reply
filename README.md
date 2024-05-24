@@ -11,7 +11,9 @@
 
 参考教程： [数据导出 | MemoTrace](https://memotrace.cn/doc/posts/deploy/exporter.html)
 
-### 本地使用
+### 本地使用/Colab
+
+[google colab](https://colab.research.google.com/drive/1V5aquQzg3mm67YIR_CmAcmQswDRE69FY?usp=sharing)
 
 ```bash
 python interface.py
