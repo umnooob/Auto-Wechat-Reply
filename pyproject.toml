@@ -12,7 +12,9 @@ pandas = "^2.2.2"
 polars = "^0.20.25"
 langchain-openai = "^0.1.6"
 gradio = "^4.31.5"
-
+htmlparser = ">= 0.0.2"
+pyqrcode = ">= 1.2.1"
+qrcode = ">= 7.4.2 "
 
 [tool.poetry.group.dev.dependencies]
 black = "^24.4.2"

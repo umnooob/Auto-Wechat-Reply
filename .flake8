@@ -5,5 +5,8 @@ ignore=
     W391,
     F403,
     F401,
-    W293
+    W293,
+    E741,
+    E722,
+    W503
 max-line-length=120
