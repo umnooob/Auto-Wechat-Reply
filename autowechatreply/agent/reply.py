@@ -74,7 +74,8 @@ class ChatHistoryReply:
         ANSWER_PROMPT = ANSWER_PROMPT.partial(chat_history=self.chat_history)
         chain = ANSWER_PROMPT | llm | StrOutputParser()
         responce = chain.invoke({"question": question})
-        self.chat_history.extend(
-            [HumanMessage(content=question), AIMessage(content=responce)]
-        )
+        if memory:
+            self.chat_history.extend(
+                [HumanMessage(content=question), AIMessage(content=responce)]
+            )
         return responce

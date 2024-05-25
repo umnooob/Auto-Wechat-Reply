@@ -26,13 +26,15 @@ class ChatApp:
         remark=None,
         nickname=None,
         history_limit=None,
+        temperature=None,
     ):
         if api_key:
             os.environ[llm_api_keys[llm]] = api_key
-        llm = get_llm(llm)
-        self.reply.prefetch_history(
-            remark=remark, nickname=nickname, history_limit=history_limit
-        )
+        llm = get_llm(llm, temperature=temperature)
+        if not self.reply.chat_history:
+            self.reply.prefetch_history(
+                remark=remark, nickname=nickname, history_limit=history_limit
+            )
         gr.Warning(f"使用 {len(self.reply.chat_history)}条聊天记录")
         return self.reply.auto_reply(llm, message)
 
@@ -61,7 +63,7 @@ def update_api_key_input(llm_selection):
 
 with gr.Blocks() as app:
     with gr.Group(visible=False) as chatbot_group:
-        dropdown = gr.Dropdown(get_llm_names(), label="LLM", info="Choose LLM")
+        dropdown = gr.Dropdown(get_llm_names(), label="模型", info="请选择LLM模型")
         api_key = gr.Textbox(visible=False)
         chatbot = gr.ChatInterface(
             chat_app.answer,
@@ -75,6 +77,9 @@ with gr.Blocks() as app:
                     label="微信昵称", placeholder="微信备注或微信昵称填一个即可"
                 ),
                 gr.Number(value=500, label="使用的记录条数"),
+                gr.Slider(
+                    minimum=0, maximum=2, value=0.7, step=0.1, label="temperature"
+                ),
             ],
         )
         dropdown.select(
