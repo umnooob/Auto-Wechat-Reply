@@ -1,5 +1,5 @@
 {
-    "path": "/Users/oops/Documents/Code/auto-wechat-reply/tests/messages.csv",
+    "path": "/path/to/exportedchatfile",
     "model": "gpt-3.5-turbo",
     "api_key": "xxxx"
 }

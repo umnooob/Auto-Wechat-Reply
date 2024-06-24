@@ -24,8 +24,17 @@ python interface.py
 
 ### 微信接入
 安装autoWechatReply库后，将`./wechat`下所有内容复制粘贴加入plugins
+
 参考 https://github.com/zhayujie/chatgpt-on-wechat/tree/master/plugins#%E6%8F%92%E4%BB%B6%E5%AE%89%E8%A3%85%E6%96%B9%E6%B3%95
 
+并填写config.json:
+```json
+{
+    "path": "导出聊天记录路径",
+    "model": "LLM模型名称",
+    "api_key": "对应模型的api key"
+}
+```
 ## TODO
 - [x] 支持微信接口
 - [ ] 支持除文本外的聊天回复
