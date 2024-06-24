@@ -6,9 +6,9 @@ authors = ["Zephan <dzx60090@gmail.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.10"
+python = ">= 3.8.0"
 langchain = "^0.1.17"
-pandas = "^2.2.2"
+pandas = ">= 2.0.0"
 polars = "^0.20.25"
 langchain-openai = "^0.1.6"
 gradio = "^4.31.5"

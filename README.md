@@ -22,8 +22,12 @@ python interface.py
 - nickname：微信好友昵称
 - remark：微信好友备注
 
+### 微信接入
+安装autoWechatReply库后，将`./wechat`下所有内容复制粘贴加入plugins
+参考 https://github.com/zhayujie/chatgpt-on-wechat/tree/master/plugins#%E6%8F%92%E4%BB%B6%E5%AE%89%E8%A3%85%E6%96%B9%E6%B3%95
+
 ## TODO
-- [ ] 支持微信接口
+- [x] 支持微信接口
 - [ ] 支持除文本外的聊天回复
 - [ ] 支持聊天冷启动
 - [ ] 支持更多大模型
